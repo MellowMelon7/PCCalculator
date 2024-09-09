@@ -1,0 +1,54 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class PCPartsCalculator {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Map<String, Double> parts = new HashMap<>();
+
+        System.out.println("Welcome to the PC Parts Calculator!");
+
+        while (true) {
+            System.out.println("\nSelect a part to add:");
+            System.out.println("1. CPU");
+            System.out.println("2. GPU");
+            System.out.println("3. RAM");
+            System.out.println("4. Motherboard");
+            System.out.println("5. Storage");
+            System.out.println("6. Power Supply");
+            System.out.println("7. Case");
+            System.out.println("8. Calculate Total");
+            System.out.println("9. Exit");
+
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
+
+            if (choice == 9) {
+                break;
+            }
+
+            if (choice >= 1 && choice <= 7) {
+                System.out.print("Enter part name: ");
+                String partName = scanner.nextLine();
+
+                System.out.print("Enter part price: ");
+                double price = scanner.nextDouble();
+
+                parts.put(partName, price);
+            } else if (choice == 8) {
+                double total = 0.0;
+                for (double price : parts.values()) {
+                    total += price;
+                }
+
+                System.out.println("Total cost: $" + total);
+            } else {
+                System.out.println("Invalid choice.");
+            }
+        }
+
+        scanner.close();
+    }
+}
